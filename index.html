@@ -8,6 +8,83 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <header>
+            <div class="hero">
+                <h1>TIC TAC TOE</h1>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="left">
+                    <div class="players">
+                        <label for="player1">Player's Name</label>
+                        <input id="player1" type="text" />
+                        <h1 id="vs">VerSUS</h1>
+                        <div>
+                            <input
+                                type="radio"
+                                name="player2"
+                                class="input"
+                                checked
+                            />
+                            <label>Player's Name</label>
+                        </div>
+                        <input type="text" />
+                        <div>
+                            <input
+                                type="radio"
+                                name="player2"
+                                class="input"
+                                disabled
+                            />
+                            <label for="">Bot</label>
+                        </div>
+                        <select name="" id="" disabled>
+                            <option value="">easy</option>
+                            <option value="">Medium</option>
+                            <option value="">Hard</option>
+                        </select>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="button-85" id="start">Start Game</button>
+                        <button class="button-85" id="reset">Reset</button>
+                    </div>
+                </div>
+                <div class="middle">
+                    <div class="signBoard">
+                        <div class="X glow-text"><h1>X</h1></div>
+                        <div class="O"><h1>O</h1></div>
+                    </div>
+                    <div class="resultBoard">
+                        <h2>You Win</h2>
+                    </div>
+                    <div class="gameBoard">
+                        <div class="board">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <h1>Score Board</h1>
+                    <div class="scoreBoard">
+                        <div><h3>Player1</h3></div>
+                        <div><h3>Player2</h3></div>
+                        <div><h1>1</h1></div>
+                        <div><h1>0</h1></div>
+                    </div>
+                </div>
+            </div>
+        </main>
         <script src="script.js"></script>
+        <footer></footer>
     </body>
 </html>
