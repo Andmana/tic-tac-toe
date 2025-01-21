@@ -85,6 +85,46 @@ const gameBoard = () => {
     };
 };
 
+const displayController = () => {
+    const startBtn = document.querySelector("#start");
+    const resetBtn = document.querySelector("#reset");
+    const fields = () => document.querySelector(".board").children;
+    const fields2 = document.querySelectorAll(".field");
+
+    const setResultBoard = (msg) => {
+        document.querySelector("#resultBoard").innerHTML = msg;
+    };
+
+    const getPlayers1Name = () => {
+        return document.querySelector("#player1").value;
+    };
+
+    const getPlayers2Name = () => {
+        return document.querySelector("#player2").value;
+    };
+
+    const setFieldSign = (field, sign) => {
+        fields()[field].classList.add("image" + sign);
+    };
+
+    const clearBoard = () => {
+        fields2.forEach((field) => {
+            if (field.classList.length > 1) {
+                field.classList.remove(field.classList.item(1));
+            }
+        });
+        setResultBoard("");
+    };
+
+    return {
+        getPlayers1Name,
+        getPlayers2Name,
+        setFieldSign,
+        clearBoard,
+        setResultBoard,
+    };
+};
+
 const checkWinning = (board) => {
     const winPatterns = [
         [0, 1, 2],
@@ -105,6 +145,7 @@ const checkWinning = (board) => {
 
 const gameController = (() => {
     let game = gameBoard();
+    const display = displayController();
     let gameRunning = true;
 
     const resetGame = () => {
@@ -112,45 +153,57 @@ const gameController = (() => {
         gameRunning = true;
         console.log("Game has been reset.");
         game.displayBoard();
+        display.clearBoard();
     };
 
     const playRound = (field) => {
         if (!gameRunning) {
             console.log("Game has already ended.");
+            display.setResultBoard("Game has already ended.");
             return;
         }
 
         if (field < 0 || field > 8) {
             console.log("Invalid move: Field out of bounds.");
+            display.setResultBoard("Invalid move: Field out of bounds.");
             return;
         }
 
         if (game.fieldIsSigned(field)) {
             console.log("Invalid move: Field is already signed.");
+            display.setResultBoard("Invalid move: Field is already signed.");
             return;
         }
 
         if (game.getActivePlayer() === undefined) game.updateActivePlayer();
 
         game.setField(field);
+        display.setFieldSign(field, game.getActivePlayer().getSign());
         game.displayBoard();
 
         const board = game.getBoard();
 
         if (checkWinning(board)) {
             console.log(`Player ${game.getActivePlayer().getSign()} wins!`);
+            display.setResultBoard(
+                `Player ${game.getActivePlayer().getSign()} wins!`
+            );
             gameRunning = false;
             return;
         }
 
         if (game.isGameStale()) {
             console.log("It's a draw!");
+            display.setResultBoard("It's a draw!");
             gameRunning = false;
             return;
         }
 
-        game.updateActivePlayer();
         console.log(`Next turn: Player ${game.getActivePlayer().getSign()}`);
+        game.updateActivePlayer();
+        display.setResultBoard(
+            `Next turn: Player ${game.getActivePlayer().getSign()}`
+        );
     };
 
     return {

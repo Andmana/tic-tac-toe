@@ -234,6 +234,19 @@ select {
     background-color: black;
 }
 
+.imageX {
+    background-image: url("/images/imageX.png");
+    background-position: center; /* Center the image */
+    background-size: cover; /* Make the image cover the entire element */
+    background-repeat: no-repeat;
+}
+.imageO {
+    background-image: url("images/imageO.png");
+    background-position: center; /* Center the image */
+    background-size: cover; /* Make the image cover the entire element */
+    background-repeat: no-repeat;
+}
+
 /* *************** */
 /*      Right      */
 /* *************** */

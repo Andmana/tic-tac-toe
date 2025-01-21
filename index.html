@@ -48,7 +48,13 @@
 
                     <div class="buttons">
                         <button class="button-85" id="start">Start Game</button>
-                        <button class="button-85" id="reset">Reset</button>
+                        <button
+                            class="button-85"
+                            id="reset"
+                            onclick="gameController.resetGame()"
+                        >
+                            Reset
+                        </button>
                     </div>
                 </div>
                 <div class="middle">
@@ -57,19 +63,46 @@
                         <div class="O"><h1>O</h1></div>
                     </div>
                     <div class="resultBoard">
-                        <h2>You Win</h2>
+                        <h2 id="resultBoard"></h2>
                     </div>
                     <div class="gameBoard">
                         <div class="board">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(0)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(1)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(2)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(3)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(4)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(5)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(6)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(7)"
+                            ></div>
+                            <div
+                                class="field"
+                                onclick="gameController.playRound(8)"
+                            ></div>
                         </div>
                     </div>
                 </div>
