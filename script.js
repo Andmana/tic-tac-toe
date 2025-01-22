@@ -91,16 +91,16 @@ const displayController = () => {
     const fields = () => document.querySelector(".board").children;
     const fields2 = document.querySelectorAll(".field");
 
-    const setResultBoard = (msg) => {
-        document.querySelector("#resultBoard").innerHTML = msg;
+    const setElementText = (selector, text) => {
+        document.querySelector(selector).innerHTML = text;
+    };
+    const getElementValue = (selector) => {
+        return document.querySelector(selector).value;
     };
 
-    const getPlayers1Name = () => {
-        return document.querySelector("#player1").value;
-    };
-
-    const getPlayers2Name = () => {
-        return document.querySelector("#player2").value;
+    const setScoreBoardName = () => {
+        setElementText("#player1Score", getElementValue("#player1"));
+        setElementText("#player2Score", getElementValue("#player2"));
     };
 
     const setFieldSign = (field, sign) => {
@@ -113,15 +113,14 @@ const displayController = () => {
                 field.classList.remove(field.classList.item(1));
             }
         });
-        setResultBoard("");
+        setElementText("#resultBoard", "");
     };
 
     return {
-        getPlayers1Name,
-        getPlayers2Name,
         setFieldSign,
         clearBoard,
-        setResultBoard,
+        setScoreBoardName,
+        setElementText,
     };
 };
 
@@ -156,22 +155,35 @@ const gameController = (() => {
         display.clearBoard();
     };
 
+    const startGame = () => {
+        gameRunning = true;
+        display.clearBoard();
+        display.setScoreBoardName();
+        console.log("Game start.");
+    };
+
     const playRound = (field) => {
         if (!gameRunning) {
             console.log("Game has already ended.");
-            display.setResultBoard("Game has already ended.");
+            display.setElementText("#resultBoard", "Game has already ended.");
             return;
         }
 
         if (field < 0 || field > 8) {
             console.log("Invalid move: Field out of bounds.");
-            display.setResultBoard("Invalid move: Field out of bounds.");
+            display.setElementText(
+                "#resultBoard",
+                "Invalid move: Field out of bounds."
+            );
             return;
         }
 
         if (game.fieldIsSigned(field)) {
             console.log("Invalid move: Field is already signed.");
-            display.setResultBoard("Invalid move: Field is already signed.");
+            display.setElementText(
+                "#resultBoard",
+                "Invalid move: Field is already signed."
+            );
             return;
         }
 
@@ -185,7 +197,8 @@ const gameController = (() => {
 
         if (checkWinning(board)) {
             console.log(`Player ${game.getActivePlayer().getSign()} wins!`);
-            display.setResultBoard(
+            display.setElementText(
+                "#resultBoard",
                 `Player ${game.getActivePlayer().getSign()} wins!`
             );
             gameRunning = false;
@@ -194,14 +207,15 @@ const gameController = (() => {
 
         if (game.isGameStale()) {
             console.log("It's a draw!");
-            display.setResultBoard("It's a draw!");
+            display.setElementText("#resultBoard", "It's a draw!");
             gameRunning = false;
             return;
         }
 
         console.log(`Next turn: Player ${game.getActivePlayer().getSign()}`);
         game.updateActivePlayer();
-        display.setResultBoard(
+        display.setElementText(
+            "#resultBoard",
             `Next turn: Player ${game.getActivePlayer().getSign()}`
         );
     };
@@ -209,6 +223,7 @@ const gameController = (() => {
     return {
         resetGame,
         playRound,
+        startGame,
     };
 })();
 

@@ -147,7 +147,7 @@ select {
 
 .players {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 2fr 1fr 1fr;
     row-gap: 20px;
     column-gap: 10px;
@@ -352,9 +352,8 @@ select {
     -webkit-appearance: none;
     /* remove default */
     /* display: block; */
-    width: 24px;
     height: 24px;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     vertical-align: middle;
     box-shadow: hsla(0, 0%, 100%, 0.15) 0 1px 1px,
