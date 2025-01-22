@@ -98,9 +98,22 @@ const displayController = () => {
         return document.querySelector(selector).value;
     };
 
+    const sroceIncreament = (sign) => {
+        const score = Number(
+            document.querySelector("#score" + sign).textContent
+        );
+        setElementText("#score" + sign, score + 1);
+    };
+
     const setScoreBoardName = () => {
         setElementText("#player1Score", getElementValue("#player1"));
         setElementText("#player2Score", getElementValue("#player2"));
+    };
+
+    const updateActiveSign = (on) => {
+        const off = on == "X" ? "O" : "X";
+        document.querySelector("." + off).classList.remove("glow-text");
+        document.querySelector("." + on).classList.add("glow-text");
     };
 
     const setFieldSign = (field, sign) => {
@@ -116,11 +129,19 @@ const displayController = () => {
         setElementText("#resultBoard", "");
     };
 
+    const resetScore = () => {
+        setElementText("#scoreX", "0");
+        setElementText("#scoreO", "0");
+    };
+
     return {
         setFieldSign,
         clearBoard,
         setScoreBoardName,
         setElementText,
+        updateActiveSign,
+        sroceIncreament,
+        resetScore,
     };
 };
 
@@ -153,20 +174,25 @@ const gameController = (() => {
         console.log("Game has been reset.");
         game.displayBoard();
         display.clearBoard();
+        display.resetScore();
     };
 
     const startGame = () => {
+        game = gameBoard();
         gameRunning = true;
         display.clearBoard();
         display.setScoreBoardName();
+        display.setElementText("#resultBoard", "Next Turn : Player X");
         console.log("Game start.");
     };
 
     const playRound = (field) => {
         if (!gameRunning) {
-            console.log("Game has already ended.");
-            display.setElementText("#resultBoard", "Game has already ended.");
-            return;
+            // console.log("Game has already ended.");
+            // display.setElementText("#resultBoard", "Game has already ended.");
+            game = gameBoard();
+            display.clearBoard();
+            gameRunning = true;
         }
 
         if (field < 0 || field > 8) {
@@ -201,7 +227,9 @@ const gameController = (() => {
                 "#resultBoard",
                 `Player ${game.getActivePlayer().getSign()} wins!`
             );
+            display.sroceIncreament(game.getActivePlayer().getSign());
             gameRunning = false;
+
             return;
         }
 
@@ -218,6 +246,7 @@ const gameController = (() => {
             "#resultBoard",
             `Next turn: Player ${game.getActivePlayer().getSign()}`
         );
+        display.updateActiveSign(game.getActivePlayer().getSign());
     };
 
     return {

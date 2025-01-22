@@ -83,6 +83,7 @@ select {
     border-radius: 10px;
     height: 30px;
     padding: 0 10px;
+    color: white;
 }
 
 input[type="text"]:focus,
@@ -237,16 +238,27 @@ select {
 .imageX {
     background-image: url("/images/imageX.png");
     background-position: center; /* Center the image */
-    background-size: cover; /* Make the image cover the entire element */
+    background-size: 60%; /* Make the image cover the entire element */
     background-repeat: no-repeat;
+    overflow: hidden;
+    transition: background-size 0.4s ease;
 }
+
 .imageO {
     background-image: url("images/imageO.png");
     background-position: center; /* Center the image */
-    background-size: cover; /* Make the image cover the entire element */
+    background-size: 60%; /* Make the image cover the entire element */
     background-repeat: no-repeat;
+    transition: background-size ease 0.4s;
 }
 
+.imageX:hover {
+    background-size: 40%; /* Scale it back to 100% (original size) when hovered */
+}
+
+.imageO:hover {
+    background-size: 80%; /* Scale it back to 100% (original size) when hovered */
+}
 /* *************** */
 /*      Right      */
 /* *************** */
