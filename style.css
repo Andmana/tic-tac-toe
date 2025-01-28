@@ -69,9 +69,8 @@ h6 {
 
 body {
     height: 100vh;
-    background-color: grey;
     color: white;
-
+    background-color: black;
     display: grid;
     gap: 5px;
 }
@@ -112,8 +111,6 @@ select {
     align-items: center;
     padding: 20px 0;
     height: 75px;
-
-    background-color: black;
 }
 
 /* *************** */
@@ -135,7 +132,6 @@ select {
 
 .left {
     grid-column: 1 / 2;
-    background-color: black;
 
     display: flex;
     flex-direction: column;
@@ -180,24 +176,29 @@ select {
 
 .signBoard {
     display: flex;
-    gap: 5px;
+    gap: 30px;
 }
 
 .signBoard div {
     height: 75px;
     padding: 10px 0;
     flex: 1;
-    justify-items: center;
     align-items: center;
-    background-color: #212121;
+}
+
+.O {
+    text-align: start;
+}
+
+.X {
+    text-align: end;
 }
 
 .glow-text {
-    background-color: black !important;
-    text-shadow: 0 0 5px #fff, /* White glow */ 0 0 10px #fff,
-        /* Stronger white glow */ 0 0 15px #4a18ff,
-        /* Pinkish glow */ 0 0 20px #290af0,
-        /* Stronger pink glow */ 0 0 30px #2e0cf1,
+    text-shadow: 0 0 5px #fff, /* White glow */ 0 0 20px #fff,
+        /* Stronger white glow */ 0 0 35px #4a18ff,
+        /* Pinkish glow */ 0 0 30px #290af0,
+        /* Stronger pink glow */ 0 0 40px #2e0cf1,
         /* Even stronger pink glow */ 0 0 40px #3705ff; /* Max pink glow */
     transition: text-shadow 0.3s ease-in-out;
 }
@@ -206,7 +207,6 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
     margin: 5px 0;
     height: 80px;
 }
@@ -227,7 +227,7 @@ select {
     width: 392px;
     height: 392px;
     margin: auto;
-    background-color: gray;
+    background-color: white;
     gap: 1px;
 }
 
@@ -281,14 +281,12 @@ select {
     grid-template-columns: 120px 120px;
     grid-template-rows: 40px 120px;
     gap: 2px;
-    background-color: grey;
 }
 
 .scoreBoard div {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
 }
 
 /* CSS */
