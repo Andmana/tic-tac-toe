@@ -236,7 +236,7 @@ select {
 }
 
 .imageX {
-    background-image: url("/images/imageX.png");
+    background-image: url("images/imageX.png");
     background-position: center; /* Center the image */
     background-size: 60%; /* Make the image cover the entire element */
     background-repeat: no-repeat;
